@@ -28,6 +28,34 @@ html, body {
 .after {
   clip-path: inset(0 50% 0 0);
 }
+.slider::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+
+  /* To trekanter: venstre og højre */
+  box-shadow:
+    -8px 0 0 0 transparent,
+     8px 0 0 0 transparent;
+}
+
+/* Venstre pil */
+.slider::before {
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 6px solid #000;
+  transform: translate(-14px, -50%);
+}
+
+/* Højre pil */
+.slider::after::after {
+  content: "";
+}
 
 .slider {
   position: absolute;
