@@ -1,9 +1,8 @@
 const compare = document.getElementById("compare");
-const afterWrapper = document.getElementById("afterWrapper");
+const afterImg = document.getElementById("afterImg");
 const slider = document.getElementById("slider");
 
 let dragging = false;
-
 
 compare.addEventListener("pointerdown", e => {
   dragging = true;
@@ -26,6 +25,6 @@ function update(e) {
   x = Math.max(0, Math.min(x, rect.width));
   const percent = (x / rect.width) * 100;
 
-  afterWrapper.style.width = percent + "%";
-  slider.style.left = percent + "%";
+  afterImg.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
+  slider.style.left = `${percent}%`;
 }
