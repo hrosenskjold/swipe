@@ -25,6 +25,6 @@ function update(e) {
   x = Math.max(0, Math.min(x, rect.width));
   const percent = (x / rect.width) * 100;
 
-  afterWrapper.style.width = `${percent}%`;
-  slider.style.left = `${percent}%`;
+  afterWrapper.style.width = percent + "%";
+  slider.style.left = percent + "%";
 }
