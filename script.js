@@ -1,12 +1,10 @@
 const compare = document.getElementById("compare");
 const afterImg = document.getElementById("afterImg");
 const slider = document.getElementById("slider");
-const closeBtn = document.getElementById("closeBtn");
 
 let dragging = false;
 
 compare.addEventListener("pointerdown", e => {
-  if (e.target.closest(".close-btn")) return;
   dragging = true;
   update(e);
 });
@@ -30,12 +28,3 @@ function update(e) {
   afterImg.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
   slider.style.left = `${percent}%`;
 }
-
-/* ===== LUK ===== */
-closeBtn.addEventListener("click", () => {
-  if (window.parent !== window) {
-    window.parent.postMessage("closeCompare", "*");
-  } else {
-    window.location.href = "/";
-  }
-});
