@@ -6,6 +6,7 @@ const closeBtn = document.getElementById("closeBtn");
 let dragging = false;
 
 compare.addEventListener("pointerdown", e => {
+  if (e.target.closest(".close-btn")) return;
   dragging = true;
   update(e);
 });
@@ -32,11 +33,9 @@ function update(e) {
 
 /* ===== LUK ===== */
 closeBtn.addEventListener("click", () => {
-  // Send besked til parent (FlipHTML5)
   if (window.parent !== window) {
     window.parent.postMessage("closeCompare", "*");
   } else {
-    // fallback hvis åbnet direkte
     window.location.href = "/";
   }
 });
