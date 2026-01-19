@@ -30,7 +30,6 @@ html, body {
   clip-path: inset(0 50% 0 0);
 }
 
-/* Slider-linje */
 .slider {
   position: absolute;
   top: 0;
@@ -43,7 +42,7 @@ html, body {
   box-shadow: 0 0 0 1px rgba(0,0,0,0.4);
 }
 
-/* Trekanter (pile) */
+/* Fælles for trekanter */
 .slider::before,
 .slider::after {
   content: "";
@@ -56,14 +55,15 @@ html, body {
   transform: translateY(-50%);
 }
 
-/* Venstre pil */
+/* ◀ Venstre trekant – tydeligt til venstre */
 .slider::before {
-  left: -8px;
+  right: 6px;                 /* 👈 flyttet VÆK fra linjen */
   border-right: 8px solid #fff;
 }
 
-/* Højre pil */
+/* ▶ Højre trekant – tydeligt til højre */
 .slider::after {
-  right: -8px;
+  left: 6px;                  /* 👈 flyttet VÆK fra linjen */
   border-left: 8px solid #fff;
 }
+
