@@ -14,27 +14,34 @@ html, body {
   cursor: ew-resize;
 }
 
-/* Begge billeder rendres IDENTISK */
-.compare img {
+/* Begge lag deler IDENTISK rendering */
+.layer {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  pointer-events: none;   /* 👈 vigtigt */
-  user-select: none;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
-/* Wrapper klipper AFTER-billedet */
+/* Billeder */
+.before {
+  background-image: url("https://limfjordsraadet.dk/media/73075/dji_0065.jpg");
+}
+
+.after {
+  background-image: url("https://limfjordsraadet.dk/media/73074/dji_0114.jpg");
+}
+
+/* Wrapper klipper AFTER-laget */
 .after-wrapper {
   position: absolute;
   inset: 0;
   width: 50%;
   overflow: hidden;
-  pointer-events: none;   /* 👈 MEGET vigtigt */
+  pointer-events: none;
 }
 
-/* Slider-linje */
+/* Slider */
 .slider {
   position: absolute;
   top: 0;
