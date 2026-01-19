@@ -4,6 +4,7 @@ const slider = document.getElementById("slider");
 
 let dragging = false;
 
+
 compare.addEventListener("pointerdown", e => {
   dragging = true;
   update(e);
