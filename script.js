@@ -1,5 +1,5 @@
 const compare = document.getElementById("compare");
-const afterImg = document.getElementById("afterImg");
+const afterWrapper = document.getElementById("afterWrapper");
 const slider = document.getElementById("slider");
 
 let dragging = false;
@@ -25,6 +25,6 @@ function update(e) {
   x = Math.max(0, Math.min(x, rect.width));
   const percent = (x / rect.width) * 100;
 
-  afterImg.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
+  afterWrapper.style.width = `${percent}%`;
   slider.style.left = `${percent}%`;
 }
