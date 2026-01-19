@@ -1,18 +1,9 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  background: #000;
-  overflow: hidden;
-}
-
 .compare {
   position: relative;
   width: 100%;
   height: 100%;
+  overflow: hidden;
   touch-action: none;
-  cursor: ew-resize;
 }
 
 .compare img {
@@ -25,45 +16,19 @@ html, body {
   pointer-events: none;
 }
 
-/* After-billedet klippes */
-.after {
-  clip-path: inset(0 50% 0 0);
+/* Wrapper der klipper AFTER-billedet */
+.after-wrapper {
+  position: absolute;
+  inset: 0;
+  width: 50%;              /* starter midt */
+  overflow: hidden;
 }
 
-.slider {
+/* AFTER-billedet ligger HELT ens som BEFORE */
+.after-wrapper img {
   position: absolute;
-  top: 0;
-  left: 50%;
-  width: 2px;
+  inset: 0;
+  width: 100%;
   height: 100%;
-  background: #fff;
-  transform: translateX(-1px);
-  pointer-events: none;
-  box-shadow: 0 0 0 1px rgba(0,0,0,0.4);
+  object-fit: cover;
 }
-
-/* Fælles for trekanter */
-.slider::before,
-.slider::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  width: 0;
-  height: 0;
-  border-top: 7px solid transparent;
-  border-bottom: 7px solid transparent;
-  transform: translateY(-50%);
-}
-
-/* ◀ Venstre trekant – tydeligt til venstre */
-.slider::before {
-  right: 6px;                 /* 👈 flyttet VÆK fra linjen */
-  border-right: 8px solid #fff;
-}
-
-/* ▶ Højre trekant – tydeligt til højre */
-.slider::after {
-  left: 6px;                  /* 👈 flyttet VÆK fra linjen */
-  border-left: 8px solid #fff;
-}
-
