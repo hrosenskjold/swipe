@@ -1,34 +1,71 @@
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+}
+
 .compare {
   position: relative;
   width: 100%;
   height: 100%;
-  overflow: hidden;
   touch-action: none;
+  cursor: ew-resize;
 }
 
+/* Begge billeder rendres IDENTISK */
 .compare img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  pointer-events: none;   /* 👈 vigtigt */
   user-select: none;
-  pointer-events: none;
 }
 
-/* Wrapper der klipper AFTER-billedet */
+/* Wrapper klipper AFTER-billedet */
 .after-wrapper {
   position: absolute;
   inset: 0;
-  width: 50%;              /* starter midt */
+  width: 50%;
   overflow: hidden;
+  pointer-events: none;   /* 👈 MEGET vigtigt */
 }
 
-/* AFTER-billedet ligger HELT ens som BEFORE */
-.after-wrapper img {
+/* Slider-linje */
+.slider {
   position: absolute;
-  inset: 0;
-  width: 100%;
+  top: 0;
+  left: 50%;
+  width: 2px;
   height: 100%;
-  object-fit: cover;
+  background: #fff;
+  transform: translateX(-1px);
+  pointer-events: none;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.4);
+}
+
+/* Pile */
+.slider::before,
+.slider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  transform: translateY(-50%);
+}
+
+.slider::before {
+  right: 6px;
+  border-right: 8px solid #fff;
+}
+
+.slider::after {
+  left: 6px;
+  border-left: 8px solid #fff;
 }
