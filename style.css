@@ -1,3 +1,36 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  overflow: hidden;
+}
+
+.compare {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  cursor: ew-resize;
+}
+
+.compare img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* After-billedet klippes */
+.after {
+  clip-path: inset(0 50% 0 0);
+}
+
+/* Slider-linje */
 .slider {
   position: absolute;
   top: 0;
@@ -7,9 +40,10 @@
   background: #fff;
   transform: translateX(-1px);
   pointer-events: none;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.4);
 }
 
-/* Pile / trekanter */
+/* Trekanter (pile) */
 .slider::before,
 .slider::after {
   content: "";
@@ -19,18 +53,17 @@
   height: 0;
   border-top: 7px solid transparent;
   border-bottom: 7px solid transparent;
+  transform: translateY(-50%);
 }
 
 /* Venstre pil */
 .slider::before {
   left: -8px;
   border-right: 8px solid #fff;
-  transform: translateY(-50%);
 }
 
 /* Højre pil */
 .slider::after {
   right: -8px;
   border-left: 8px solid #fff;
-  transform: translateY(-50%);
 }
