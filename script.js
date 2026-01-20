@@ -6,33 +6,43 @@ let dragging = false;
 let imageBox = null;
 
 function calculateImageBox() {
-  const container = compare.getBoundingClientRect();
+  const containerRect = compare.getBoundingClientRect();
   const img = afterImg;
 
+  if (!img.naturalWidth || !img.naturalHeight) return;
+
   const imgRatio = img.naturalWidth / img.naturalHeight;
-  const containerRatio = container.width / container.height;
+  const containerRatio = containerRect.width / containerRect.height;
 
   let width, height, left, top;
 
   if (imgRatio > containerRatio) {
     // letterbox top/bottom
-    width = container.width;
+    width = containerRect.width;
     height = width / imgRatio;
     left = 0;
-    top = (container.height - height) / 2;
+    top = (containerRect.height - height) / 2;
   } else {
     // letterbox left/right
-    height = container.height;
+    height = containerRect.height;
     width = height * imgRatio;
     top = 0;
-    left = (container.width - width) / 2;
+    left = (containerRect.width - width) / 2;
   }
 
   imageBox = { width, height, left, top };
+
+  // 🔑 nulstil til 50 % hver gang vi recalculerer
+  const x = width / 2;
+  afterImg.style.clipPath = `inset(0 50% 0 0)`;
+  slider.style.left = `${left + x}px`;
 }
+
+// ------------------ EVENTS ------------------
 
 compare.addEventListener("pointerdown", e => {
   dragging = true;
+  compare.setPointerCapture(e.pointerId);
   update(e);
 });
 
@@ -41,7 +51,12 @@ compare.addEventListener("pointermove", e => {
   update(e);
 });
 
-window.addEventListener("pointerup", () => {
+compare.addEventListener("pointerup", e => {
+  dragging = false;
+  compare.releasePointerCapture(e.pointerId);
+});
+
+compare.addEventListener("pointerleave", () => {
   dragging = false;
 });
 
@@ -49,13 +64,16 @@ window.addEventListener("resize", calculateImageBox);
 window.addEventListener("load", calculateImageBox);
 afterImg.addEventListener("load", calculateImageBox);
 
+// ------------------ LOGIK ------------------
+
 function update(e) {
   if (!imageBox) return;
 
   const rect = compare.getBoundingClientRect();
-  let x = e.clientX - rect.left - imageBox.left;
 
+  let x = e.clientX - rect.left - imageBox.left;
   x = Math.max(0, Math.min(x, imageBox.width));
+
   const percent = x / imageBox.width;
 
   afterImg.style.clipPath =
