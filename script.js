@@ -46,6 +46,7 @@ window.addEventListener("pointerup", () => {
 });
 
 window.addEventListener("resize", calculateImageBox);
+window.addEventListener("load", calculateImageBox);
 afterImg.addEventListener("load", calculateImageBox);
 
 function update(e) {
